@@ -2,7 +2,6 @@
 
 [:pineapple:Let's Paipain!:pineapple:](http://hogewest.github.io/paipain/)
 
-![pineapple](http://photo.v-colors.com/wp-content/uploads/000261-401x600.jpg)
 ## Contributing
 
 1. Fork it ( https://github.com/hogewest/paipain/fork )
