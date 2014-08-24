@@ -24,7 +24,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
   <script>
     angular.module('paipain', [])
-    .filter('split', function() {
+    .filter('prityPi', function() {
       return function(input) {
         return input.replace(/(.{4})/g, '$1 ')
       };
@@ -81,7 +81,7 @@
           if (count > $scope.answer.length) {
             count = 0;
           }
-          console.log("3.14 " + $filter('split')($scope.answer.slice(0, count)));
+          console.log("3.14 " + $filter('prityPi')($scope.answer.slice(0, count)));
           ++count;
       }, 1000);
     }]);
@@ -94,7 +94,7 @@
     <p>ボタンかキーボードで入力できます</p>
 
     <div class="container">
-      <h1>3.14  {{inputs | split}}<span class="prompt" ng-show="!success && !failure">&nbsp</span></h1>
+      <h1>3.14  {{inputs | prityPi}}<span class="prompt" ng-show="!success && !failure">&nbsp</span></h1>
       <h1 class="text-success" ng-show="success">ぱいなぽー！</h1>
       <h1 class="text-danger" ng-show="failure">次は {{answer[inputs.length - 1]}} でした。。。(T . T)</h1>
       <button class="btn btn-default btn-lg" ng-show="failure || success" ng-click="retry()">もう一回</button>
@@ -132,7 +132,7 @@
       <!-- GitHub -->
       <iframe src="http://ghbtns.com/github-btn.html?user=hogewest&repo=paipain&type=fork&size=large" height="30" width="100" frameborder="0" scrolling="0" style="width:100px; height: 30px;" allowTransparency="true"></iframe>
       <!-- Yukatan -->
-      <a href="http://www.kagurazakayuka-diary.com/?eid=14"><p style="margin: 15px;">ゆかたんダイアリー</p></a>
+      <p style="margin: 15px;"><a href="http://www.kagurazakayuka-diary.com/?eid=14">ゆかたんダイアリー</a></p>
     </div>
   </div>
 </body>
