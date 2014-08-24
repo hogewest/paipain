@@ -13,7 +13,7 @@
       return input.replace(/(.{4})/g, '$1 ')
     };
   })
-  .controller('IndexCtrl', ['$scope', function($scope) {
+  .controller('IndexCtrl', ['$scope', '$interval', '$filter', function($scope, $interval, $filter) {
     $scope.answer = '1592653589793238462643383279502884197169399375105820974944592307816406286208';
     $scope.inputs = '';
     $scope.success = false;
@@ -59,6 +59,15 @@
       $scope.success = false;
       $scope.failure = false;
     };
+
+    var count = 0;
+    $interval(function() {
+        if (count > $scope.answer.length) {
+          count = 0;
+        }
+        console.log("3.14 " + $filter('split')($scope.answer.slice(0, count)));
+        ++count;
+    }, 1000);
   }]);
   </script>
 </head>
