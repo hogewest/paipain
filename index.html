@@ -3,9 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
   <title>☆★☆ PaiPain ☆★☆</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <style>
+    @keyframes blink {
+      75% { opacity: 0.0; }
+    }
+    @-webkit-keyframes blink {
+      75% { opacity: 0.0; }
+    }
+    .prompt {
+      animation: blink 1s step-end infinite;
+      -webkit-animation: blink 1s step-end infinite;
+      text-decoration: none;
+      border-bottom:5px solid #002e9b;
+      position: relative;
+      top: -10px;
+    }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.23/angular.min.js"></script>
   <script>
   angular.module('paipain', [])
   .filter('split', function() {
@@ -77,7 +93,7 @@
     <p>πを完成させてぱいなぽー ボタンかキーボードで入力できます</p>
 
     <div class="container">
-      <h1>3.14  {{inputs | split}}<strong ng-show="!success && !failure">*</strong> </h1>
+      <h1>3.14  {{inputs | split}}<span class="prompt" ng-show="!success && !failure">&nbsp</span></h1>
       <h1 class="text-success" ng-show="success">ぱいなぽー！</h1>
       <h1 class="text-danger" ng-show="failure">次は {{answer[inputs.length - 1]}} でした。。。(T . T)</h1>
       <button class"btn btn-default btn-lg" ng-show="failure || success" ng-click="retry()">もう一回</button>
