@@ -27,7 +27,22 @@
       return $scope.answer === $scope.inputs;
     }
 
-    $scope.input = function(num) {
+    $scope.input = function(input) {
+      if ($scope.success || $scope.failure) {
+        return;
+      }
+
+      var num;
+      if (input.constructor === KeyboardEvent) {
+        // 0-9
+        if (input.keyCode < 48 || input.keyCode > 57) {
+          return;
+        }
+        num = String.fromCharCode(input.keyCode);
+      } else {
+        num = input;
+      }
+
       $scope.inputs += num;
       $scope.failure = isFailure();
       $scope.success = isSuccess();
@@ -47,18 +62,22 @@
   }]);
   </script>
 </head>
-<body style="background-color: #8fe9ff; color: #002e9b" ng-controller="IndexCtrl">
+<body style="background-color: #8fe9ff; color: #002e9b" ng-controller="IndexCtrl" ng-keyup="input($event)">
   <div class="text-center">
     <h1>Let's Paipain!</h1>
+    <p>πを完成させてぱいなぽー ボタンかキーボードで入力できます</p>
+
     <div class="container">
       <h1>3.14  {{inputs | split}}<strong ng-show="!success && !failure">*</strong> </h1>
       <h1 class="text-success" ng-show="success">ぱいなぽー！</h1>
       <h1 class="text-danger" ng-show="failure">次は {{answer[inputs.length - 1]}} でした。。。(T . T)</h1>
       <button class"btn btn-default btn-lg" ng-show="failure || success" ng-click="retry()">もう一回</button>
     </div>
+
     <div>
       <marquee scrollamount="8" behavior="alternate" ng-show="!success">残りは {{length()}} 桁です♪</marquee>
     </div>
+
     <div class="container" ng-show="!failure && !success">
       <div class="row" style="margin-top: 35px; margin-bottom: 35px;">
         <div class="col-xs-4"><button class="btn btn-warning btn-block btn-lg" ng-click="input(1)">1</button></div>
@@ -79,13 +98,16 @@
         <div class="col-xs-12"><button class="btn btn-warning btn-block btn-lg" ng-click="input(0)">0</button></div>
       </div>
     </div>
+
     <div>
+      <!-- Twitter -->
       <a href="https://twitter.com/share" class="twitter-share-button" data-size="large">Tweet</a>
       <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      <!-- GitHub -->
       <iframe src="http://ghbtns.com/github-btn.html?user=hogewest&repo=paipain&type=fork&size=large" height="30" width="100" frameborder="0" scrolling="0" style="width:100px; height: 30px;" allowTransparency="true"></iframe>
+      <!-- Yukatan -->
       <a href="http://www.kagurazakayuka-diary.com/?eid=14"><p style="margin: 15px;">ゆかたんダイアリー</p></a>
     </div>
   </div>
-
 </body>
 </html>
