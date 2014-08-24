@@ -33,7 +33,7 @@
       }
 
       var num;
-      if (input.constructor === KeyboardEvent) {
+      if (input instanceof KeyboardEvent) {
         // 0-9
         if (input.keyCode < 48 || input.keyCode > 57) {
           return;
